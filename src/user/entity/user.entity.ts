@@ -20,11 +20,14 @@ export class User {
   @Column({ type: "varchar", name: "last_name", length: 100 })
   lastName: string;
 
-  @Column({ type: "varchar", name: "mobile_phone", length: 31 })
-  mobilePhone: string;
+  @Column({ type: "varchar", name: "avatar", length: 31 })
+  avatar: string;
 
   @Column({ type: "varchar", name: "password" })
   password: string;
+
+  @Column({ type: "varchar", name: "type" })
+  type: string;
 
   @UpdateDateColumn()
   updated: Date;
