@@ -7,7 +7,7 @@ import { UserService } from "./user.service";
 export class UserController {
     constructor(private readonly userService: UserService) { }
 
-    @Get(":id")
+      @Get(":id")
     @ApiResponse({
         status: HttpStatus.OK,
         description: "User trouvé et retourné"
