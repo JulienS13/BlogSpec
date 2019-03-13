@@ -12,7 +12,7 @@ export class UserController {
     status: HttpStatus.OK,
     description: "User trouvé et retourné"
   })
-  async getById(@Param("id") id: string) {
+  async getById( @Param("id") id: string) {
     return this.userService.getById(id);
   }
 }
