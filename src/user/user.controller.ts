@@ -27,4 +27,15 @@ export class UserController {
     async updateUser( @Body() user: User) {
         return this.userService.updateUser(user);
     }
+
+    @Post(":delete")
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: "User modifié"
+    })
+
+
+    async deleteUser( @Body() user: User) {
+        return this.userService.deleteUser(user);
+    }
 }
