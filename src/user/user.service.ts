@@ -38,4 +38,18 @@ export class UserService {
         user.avatar = myUser.avatar;
         return this.userRepository.save(user);
     }
+
+
+    /**
+     * Supprime un utilisateur
+     *
+     * @param id - user id
+     * @returns Resolves with User
+     */
+    async deleteUser(myUser: any): Promise<User> {
+        const user = await this.getById(myUser.id);
+
+        return this.userRepository.remove(user);
+    }
+
 }
