@@ -1,13 +1,17 @@
 import {
     Column,
+    OneToMany,
     CreateDateColumn,
     Entity,
     PrimaryGeneratedColumn,
     UpdateDateColumn
 } from "typeorm";
-
+import { Article } from '../../article/entity/article.entity';
 @Entity()
 export class User {
+
+    @OneToMany(type => Article, article => article.author)
+    articles: Article[];
 
     @PrimaryGeneratedColumn("uuid", { name: "user_id" })
     userId: string;
