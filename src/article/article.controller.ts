@@ -17,4 +17,15 @@ export class ArticleController {
         return this.articleService.getById(id);
     }
 
+
+    @Get("article/")
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: "Article trouvés"
+
+    })
+    async getAllArticle() {
+        return this.articleService.getAllArticle();
+    }
+
 }

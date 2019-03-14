@@ -19,4 +19,13 @@ export class ArticleService {
         return this.articleRepository.findOne(id);
     }
 
+    /**
+    * Returns all articles 
+    *
+    * 
+    * @returns Resolves with Articles
+    */
+    async getAllArticle() {
+        return this.articleRepository.find();
+    }
 }
