@@ -25,8 +25,18 @@ export class ArticleService {
      * @param id - author id
      * @returns Resolves with Articles
      */
-    async getByAuthor(id: string): Promise<Article> {
+    async getByAuthor(id: string) {
         return this.articleRepository.findOne({ where: { author: id } });
+    }
+
+    /**
+     * Returns all articles identified by its author
+     *
+     * @param id - author id
+     * @returns Resolves with Articles
+     */
+    async getAllArticlesByAuthor(author: string) {
+        return this.articleRepository.find({ where: { Author: author } })
     }
 
 }

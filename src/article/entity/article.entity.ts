@@ -1,7 +1,6 @@
 import {
     Column,
     JoinColumn,
-    ManyToOne,
     CreateDateColumn,
     Entity,
     PrimaryGeneratedColumn,
@@ -14,10 +13,6 @@ import { User } from '../../user/entity/user.entity';
 @Entity()
 export class Article {
 
-    @JoinColumn({ name: 'author_id' })
-    @ManyToOne(type => User, author => author.articles)
-    author: string;
-
     @PrimaryGeneratedColumn('uuid', { name: 'article_id' })
     articleId: string;
 
@@ -29,5 +24,8 @@ export class Article {
 
     @UpdateDateColumn()
     updated: Date;
+
+    @Column({ type: "varchar", name: "author", length: 200 })
+    author: User;
 
 }

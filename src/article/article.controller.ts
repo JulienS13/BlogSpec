@@ -24,6 +24,19 @@ export class ArticleController {
     })
     async getByAuthor( @Param("id") id: string) {
         return this.articleService.getByAuthor(id);
+
+    }
+
+
+    @Get("articles/:author_id")
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: "Articles trouvés et retournés"
+    })
+    async getAllArticlesByAuthor( @Param("id") id: string) {
+        return this.articleService.getAllArticlesByAuthor(id);
+
+
     }
 
 }
