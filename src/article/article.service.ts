@@ -19,4 +19,24 @@ export class ArticleService {
         return this.articleRepository.findOne(id);
     }
 
+    /**
+     * Returns a article identified by its author
+     *
+     * @param id - author id
+     * @returns Resolves with Articles
+     */
+    async getByAuthor(id: string) {
+        return this.articleRepository.findOne({ where: { author: id } });
+    }
+
+    /**
+     * Returns all articles identified by its author
+     *
+     * @param id - author id
+     * @returns Resolves with Articles
+     */
+    async getAllArticlesByAuthor(author: string) {
+        return this.articleRepository.find({ where: { Author: author } })
+    }
+
 }
