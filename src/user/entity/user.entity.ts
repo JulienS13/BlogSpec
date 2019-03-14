@@ -9,6 +9,9 @@ import {
 @Entity()
 export class User {
 
+    @PrimaryGeneratedColumn("uuid", { name: "user_id" })
+    userId: string;
+
     @Column({ type: "varchar", name: "email", length: 200 })
     email: string;
 
