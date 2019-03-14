@@ -10,8 +10,8 @@ import {
 @Entity()
 export class Commentaire {
 
-    @PrimaryColumn({ type: "varchar", name: "commentaireId", length: 200 })
-    commentaireId: string;
+    @PrimaryGeneratedColumn("uuid", { name: "commentaire_id" })
+    CommentaireId: string;
 
     @Column({ type: "varchar", name: "authorId", length: 100 })
     authorId: string;
