@@ -19,4 +19,14 @@ export class ArticleService {
         return this.articleRepository.findOne(id);
     }
 
+    /**
+     * Returns a article identified by its author
+     *
+     * @param id - author id
+     * @returns Resolves with Articles
+     */
+    async getByAuthor(id: string): Promise<Article> {
+        return this.articleRepository.findOne({ where: { author: id } });
+    }
+
 }
