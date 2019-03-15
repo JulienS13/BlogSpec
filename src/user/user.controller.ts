@@ -38,4 +38,25 @@ export class UserController {
     async deleteUser( @Body() user: User) {
         return this.userService.deleteUser(user);
     }
+
+
+    @Get("admin/:isAdmin")
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: "User est admin"
+    })
+
+    async isAdmin( @Param("id") id: string) {
+        return this.userService.isAdmin(id);
+    }
+
+    @Post("admin/:updateEmail")
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: "User Email modifié"
+    })
+
+    async updateEmailAsAdmin( @Body() myUser: User, id: string) {
+        return this.userService.updateEmailAsAdmin(myUser, id);
+    }
 }
