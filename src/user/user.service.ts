@@ -97,6 +97,18 @@ export class UserService {
 
 
     /**
+    * Returns all users If admin
+    *
+    * @param id - user id
+    * @returns Resolves with Users
+    */
+    async getAllUserIfAdmin(id: string) {
+        const userIsAdmin = await this.isAdmin(id);
+        if (userIsAdmin == true) {
+            return this.userRepository.find();
+
+
+    /**
     * Met à jout l'adresse le rôle d'un utilisateur si l'utilisateur qui fait l'action est un administrateur
     *
     * @param user - user id
@@ -118,6 +130,10 @@ export class UserService {
         else {
             return 'Vous n"êtes pas Admin';
         }
+
+    }
+
+
 
     };
 }
