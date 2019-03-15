@@ -69,9 +69,11 @@ export class UserController {
 
     async updateRoleAsAdmin( @Body() myUser: User, id: string) {
         return this.userService.updateRoleAsAdmin(myUser, id);
-      
-      
-      
+
+
+    }
+
+
     @Get("admin/:getAllUser")
     @ApiResponse({
         status: HttpStatus.OK,
@@ -80,6 +82,17 @@ export class UserController {
 
     async getAllUserIfAdmin( @Param("id") id: string) {
         return this.userService.getAllUserIfAdmin(id);
+
+    }
+
+    @Get("admin/:getAllUserByRole")
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: "Tous les users ont été récupérés"
+    })
+
+    async getAllUserByRoleIfAdmin( @Param("id") id: string) {
+        return this.userService.getAllUserByRoleIfAdmin(id);
 
     }
 }
