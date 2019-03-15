@@ -2,6 +2,7 @@ import { Body, Controller, Get, HttpStatus, Param, Post } from "@nestjs/common";
 import { ApiResponse, ApiUseTags } from "@nestjs/swagger";
 import { ArticleService } from "./article.service";
 import { Article } from "src/article/entity/article.entity";
+import { User } from "src/user/entity/user.entity";
 
 @ApiUseTags("Article")
 @Controller("Article")
@@ -58,5 +59,17 @@ export class ArticleController {
 
     async deleteArticle( @Body() article: Article) {
         return this.articleService.deleteArticle(article);
+    }
+
+
+    @Post(":hide")
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: "Article desactivé"
+    })
+
+
+    async hideArticle( @Body() article: Article, user: User) {
+        return this.articleService.hideArticleAsAdmin(article, user)
     }
 }

@@ -6,6 +6,13 @@ import { ArticleController } from "./article.controller";
 import { ArticleRepository } from "./article.repository";
 import { ArticleService } from "./article.service";
 
+import { UserService } from "../user/user.service";
+import { UserController } from "../user/user.controller";
+import { UserRepository } from "../user/user.repository";
+
+
+
+
 @Module({
     imports: [DatabaseModule],
     controllers: [ArticleController],
