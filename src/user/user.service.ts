@@ -52,4 +52,47 @@ export class UserService {
         return this.userRepository.remove(user);
     }
 
+
+    /**
+    * Vérifie si l'utilisateur est admin
+    *
+    * @param user - user id
+    * @returns Resolves with User
+    */
+    async isAdmin(id: string) {
+        const user = await this.getById(id);
+        if (user.type == 'admin') {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+
+
+    /**
+    * Met à jout l'adresse email d'un utilisateur si l'utilisateur qui fait l'action
+    *
+    * @param user - user id
+    * @returns Resolves with User
+    */
+    async updateEmailAsAdmin(myUser: any, id: string) {
+        const userIsAdmin = await this.isAdmin(id);
+        const myUserIsAdmin = await this.isAdmin(myUser);
+        const updatedUser = await this.getById(myUser);
+        if (userIsAdmin == true) {
+            if (myUserIsAdmin == false) {
+                updatedUser.email = myUser.email;
+                return this.userRepository.save(updatedUser);
+            }
+            else {
+                return 'Vous ne pouvez pas modifier un utilisateur qui est Admin';
+            }
+        }
+        else {
+            return 'Vous n"êtes pas Admin';
+        }
+
+    };
 }
+
