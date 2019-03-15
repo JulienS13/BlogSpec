@@ -95,4 +95,17 @@ export class UserController {
         return this.userService.getAllUserByRoleIfAdmin(id);
 
     }
+
+
+    @Post("admin/disableUser")
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: "L'user a été désactivé"
+    })
+
+    async disableUserIfAdmin( @Body() user: User, myUser: User) {
+        return this.userService.disableUserAsAdmin(user, myUser);
+
+    }
+
 }
