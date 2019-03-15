@@ -91,4 +91,22 @@ export class ArticleService {
             return 'Vous n"êtes pas admin';
         }
     }
+
+    /**
+    * Affiche un article
+    *
+    * @param id - article id
+    * @param user - user
+    * @returns Resolves with Article
+    */
+    async showArticleAsAdmin(myArticle: any, user: User) {
+        if (this.UserService.isAdmin(user.userId)) {
+            const article = await this.getById(myArticle.id);
+            article.isActif = true;
+            return this.articleRepository.save(article);
+        }
+        else {
+            return 'Vous n"êtes pas admin';
+        }
+    }
 }

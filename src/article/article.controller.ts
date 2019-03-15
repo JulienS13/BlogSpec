@@ -72,4 +72,15 @@ export class ArticleController {
     async hideArticle( @Body() article: Article, user: User) {
         return this.articleService.hideArticleAsAdmin(article, user)
     }
+
+    @Post(":show")
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: "Article desactivé"
+    })
+
+
+    async showArticle( @Body() article: Article, user: User) {
+        return this.articleService.showArticleAsAdmin(article, user)
+    }
 }
