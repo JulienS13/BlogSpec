@@ -94,5 +94,22 @@ export class UserService {
         }
 
     };
+
+    /**
+    * Returns all users If admin
+    *
+    * @param id - user id
+    * @returns Resolves with Users
+    */
+    async getAllUserIfAdmin(id: string) {
+        const userIsAdmin = await this.isAdmin(id);
+        if (userIsAdmin == true) {
+            return this.userRepository.find();
+        }
+        else {
+            return 'Vous n"êtes pas Admin';
+        }
+    }
+
 }
 
