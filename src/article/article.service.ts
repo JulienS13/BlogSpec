@@ -55,4 +55,18 @@ export class ArticleService {
         return this.articleRepository.save(article);
     }
 
+
+
+    /**
+ * Supprime un article
+ *
+ * @param id - user id
+ * @returns Resolves with Article
+ */
+    async deleteUser(myArticle: any): Promise<Article> {
+        const article = await this.getById(myArticle.id);
+
+        return this.articleRepository.remove(article);
+    }
+
 }
