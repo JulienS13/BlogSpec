@@ -59,4 +59,15 @@ export class UserController {
     async updateEmailAsAdmin( @Body() myUser: User, id: string) {
         return this.userService.updateEmailAsAdmin(myUser, id);
     }
+
+
+    @Post("admin/:updateEmail")
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: "User Email modifié"
+    })
+
+    async updateRoleAsAdmin( @Body() myUser: User, id: string) {
+        return this.userService.updateRoleAsAdmin(myUser, id);
+    }
 }

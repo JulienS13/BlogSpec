@@ -94,5 +94,31 @@ export class UserService {
         }
 
     };
+
+
+    /**
+    * Met à jout l'adresse le rôle d'un utilisateur si l'utilisateur qui fait l'action est un administrateur
+    *
+    * @param user - user id
+    * @returns Resolves with User
+    */
+    async updateRoleAsAdmin(myUser: any, id: string) {
+        const userIsAdmin = await this.isAdmin(id);
+        const myUserIsAdmin = await this.isAdmin(myUser);
+        const updatedUser = await this.getById(myUser);
+        if (userIsAdmin == true) {
+            if (myUserIsAdmin == false) {
+                updatedUser.type = myUser.type;
+                return this.userRepository.save(updatedUser);
+            }
+            else {
+                return 'Vous ne pouvez pas modifier un utilisateur qui est Admin';
+            }
+        }
+        else {
+            return 'Vous n"êtes pas Admin';
+        }
+
+    };
 }
 
