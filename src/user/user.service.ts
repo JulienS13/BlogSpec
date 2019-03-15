@@ -153,4 +153,24 @@ export class UserService {
             });
         }
     }
+
+
+    /**
+    * Disable a user
+    *
+    * @param user - user 
+    * @param myUser - user
+    * @returns Resolves with User
+    */
+    async disableUserAsAdmin(user: User, myUser: User) {
+        const userIsAdmin = await this.isAdmin(user.userId);
+        if (userIsAdmin == true) {
+            const myUserdisabled = await this.getById(myUser.userId);
+            myUserdisabled.isActif = false;
+            return this.userRepository.save(myUserdisabled);
+        }
+        else {
+            return 'Vous n"êtes pas admin';
+        }
+    }
 }

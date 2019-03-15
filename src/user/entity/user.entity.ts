@@ -40,4 +40,7 @@ export class User {
     @Column({ type: "varchar", name: "avatar", length: 31 })
     avatar: string;
 
+    @Column({ type: "boolean", name: "isActif" })
+    isActif: boolean;
+
 }
