@@ -28,4 +28,7 @@ export class Article {
     @Column({ type: "varchar", name: "author", length: 200 })
     author: User;
 
+    @Column({ type: "boolean", name: "isActif" })
+    isActif: Boolean;
+
 }

@@ -2,11 +2,14 @@ import { Inject, Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { Article } from "./entity/article.entity";
 import { ArticleRepository } from "./article.repository";
+import { UserService } from "../user/user.service";
+import { User } from "src/user/entity/user.entity";
 
 @Injectable()
 export class ArticleService {
     constructor(
-        @Inject(ArticleRepository) private readonly articleRepository: ArticleRepository
+        @Inject(ArticleRepository) private readonly articleRepository: ArticleRepository,
+        private UserService: UserService
     ) { }
 
     /**
@@ -60,7 +63,7 @@ export class ArticleService {
     /**
  * Supprime un article
  *
- * @param id - user id
+ * @param id - article id
  * @returns Resolves with Article
  */
     async deleteUser(myArticle: any): Promise<Article> {
@@ -68,5 +71,26 @@ export class ArticleService {
 
         return this.articleRepository.remove(article);
     }
+
+
+
+    /**
+    * Cache un article
+    *
+    * @param id - article id
+    * @param user - user
+    * @returns Resolves with Article
+    */
+    async hideArticleAsAdmin(myArticle: any, user: User) {
+        if (this.UserService.isAdmin(user.userId)) {
+            const article = await this.getById(myArticle.id);
+            article.isActif = false;
+            return this.articleRepository.save(article);
+        }
+        else {
+            return 'Vous n"êtes pas admin';
+        }
+    }
+}
 
 }
