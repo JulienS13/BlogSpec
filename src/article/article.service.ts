@@ -39,4 +39,20 @@ export class ArticleService {
         return this.articleRepository.find({ where: { Author: author } })
     }
 
+
+    /**
+* Update an Article identified by its id
+*
+* @param id - article id
+* @returns Resolves with Article
+*/
+    async updatdeArticle(myArticle: any): Promise<Article> {
+        console.log(myArticle.id);
+        const article = await this.getById(myArticle.id);
+        article.author = myArticle.author;
+        article.title = myArticle.title;
+        article.updated = new Date(Date.now());
+        return this.articleRepository.save(article);
+    }
+
 }
