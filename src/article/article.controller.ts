@@ -39,4 +39,14 @@ export class ArticleController {
 
     }
 
+    @Post("update/:update")
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: "Article modifié"
+    })
+
+    async updateArticle( @Body() article: Article) {
+        return this.articleService.updatdeArticle(article);
+    }
+
 }
