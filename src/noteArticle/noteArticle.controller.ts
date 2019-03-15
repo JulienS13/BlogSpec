@@ -17,4 +17,12 @@ export class NoteArticleController {
         return this.noteArticleService.getById(id);
     }
 
+    @Post("Add/:noteAricle")
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: "NoteArticle Ajouté ou Modifié"
+    })
+    async addNoteArticle( @Param("noteArticle") noteArticle: NoteArticle) {
+        return this.noteArticleService.addNoteArticle(noteArticle);
+    }
 }

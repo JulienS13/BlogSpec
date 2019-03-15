@@ -66,7 +66,7 @@ export class ArticleService {
  * @param id - article id
  * @returns Resolves with Article
  */
-    async deleteUser(myArticle: any): Promise<Article> {
+    async deleteArticle(myArticle: any): Promise<Article> {
         const article = await this.getById(myArticle.id);
 
         return this.articleRepository.remove(article);
