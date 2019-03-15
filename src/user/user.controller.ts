@@ -61,7 +61,17 @@ export class UserController {
     }
 
 
+    @Post("admin/:updateEmail")
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: "User Email modifié"
+    })
 
+    async updateRoleAsAdmin( @Body() myUser: User, id: string) {
+        return this.userService.updateRoleAsAdmin(myUser, id);
+      
+      
+      
     @Get("admin/:getAllUser")
     @ApiResponse({
         status: HttpStatus.OK,
@@ -70,5 +80,6 @@ export class UserController {
 
     async getAllUserIfAdmin( @Param("id") id: string) {
         return this.userService.getAllUserIfAdmin(id);
+
     }
 }
