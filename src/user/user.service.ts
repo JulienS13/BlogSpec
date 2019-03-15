@@ -67,7 +67,7 @@ export class UserService {
         else {
             return false;
         }
-    };
+    }
 
 
     /**
@@ -93,7 +93,7 @@ export class UserService {
             return 'Vous n"êtes pas Admin';
         }
 
-    };
+    }
 
 
     /**
@@ -106,6 +106,8 @@ export class UserService {
         const userIsAdmin = await this.isAdmin(id);
         if (userIsAdmin == true) {
             return this.userRepository.find();
+        }
+    }
 
 
     /**
@@ -134,7 +136,21 @@ export class UserService {
     }
 
 
+    /**
+    * Returns all users by role If admin
+    *
+    * @param id - user id
+    * @returns Resolves with Users by role
+    */
+    async getAllUserByRoleIfAdmin(id: string) {
+        const userIsAdmin = await this.isAdmin(id);
+        if (userIsAdmin == true) {
+            return this.userRepository.find({
+                order: {
+                    type: "ASC"
+                }
 
-    };
+            });
+        }
+    }
 }
-
