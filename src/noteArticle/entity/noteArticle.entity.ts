@@ -16,8 +16,8 @@ export class NoteArticle {
     @PrimaryGeneratedColumn("uuid", { name: "noteArticle_id" })
     noteArticle_id: string;
 
-    @Column({ type: "number", name: "grade" })
-    grade: number;
+    @Column({ type: "varchar", name: "grade", length: 200 })
+    grade: string;
 
     @OneToOne(type => User, user => User)
     user: User;
