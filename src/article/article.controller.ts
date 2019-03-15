@@ -49,4 +49,14 @@ export class ArticleController {
         return this.articleService.updatdeArticle(article);
     }
 
+    @Post(":delete")
+    @ApiResponse({
+        status: HttpStatus.OK,
+        description: "Article supprimé"
+    })
+
+
+    async deleteArticle( @Body() article: Article) {
+        return this.articleService.deleteArticle(article);
+    }
 }
